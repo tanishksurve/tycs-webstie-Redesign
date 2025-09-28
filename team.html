@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Team - TYCS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #b0f1b6, #ffffff, #a6d4fa);
+      min-height: 100vh;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+      color: #007a66;
+    }
+
+    .team-container, .second-row-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1300px;
+      width: 100%;
+    }
+
+    .second-row-wrapper {
+      margin-top: 40px;
+    }
+
+
+    .card {
+  position: relative;
+  width: 400px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  color: #333;
+  transition: transform 0.3s ease, background 0.6s ease, box-shadow 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2); /* base border */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* soft bottom shadow */
+  z-index: 0;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: linear-gradient(135deg, #0fffc1 0%, #00c3ff 100%);
+  border-color: #06ffc7;
+  box-shadow:
+    0 0 10px #06ffc7,
+    0 0 20px #06ffc7,
+    0 10px 25px rgba(0, 0, 0, 0.2); /* glow + drop */
+}
+
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      background: #00ffcc;
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+
+    .card::before {
+      height: 2px;
+      width: 0;
+      top: 0;
+      left: 0;
+    }
+
+    .card::after {
+      height: 2px;
+      width: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    .card:hover::before,
+    .card:hover::after {
+      width: 100%;
+    }
+
+    .card .border-left,
+    .card .border-right {
+      position: absolute;
+      width: 2px;
+      height: 0;
+      background: #00ffcc;
+      transition: height 0.5s ease;
+      z-index: -1;
+    }
+
+    .card .border-left {
+      left: 0;
+      top: 0;
+    }
+
+    .card .border-right {
+      right: 0;
+      bottom: 0;
+    }
+
+    .card:hover .border-left,
+    .card:hover .border-right {
+      height: 100%;
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00ffcc;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      color: #007a66;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #333;
+      margin: 8px 0;
+    }
+
+    .social-icons {
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 8px;
+      /* Remove any background or box-shadow */
+      background: none;
+      box-shadow: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      position: relative;
+      overflow: visible;
+      vertical-align: middle;
+    }
+
+    .social-icons img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 4px;
+      box-sizing: border-box;
+      border: 2px solid #fff;
+      display: block;
+      margin: 0 auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 0 0 transparent;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 8px #00c3ff44;
+    }
+
+    @media (max-width: 992px) {
+      .team-container,
+      .second-row-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .card {
+  position: relative;
+  width: 400px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  color: #333;
+  transition: transform 0.3s ease, background 0.6s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+  z-index: 0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, #0fffc1 0%, #00c3ff 100%);
+}
+
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  background: #00ffcc;
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.card::before {
+  height: 2px;
+  width: 0;
+  top: 0;
+  left: 0;
+}
+
+.card::after {
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.card:hover::before,
+.card:hover::after {
+  width: 100%;
+}
+
+.card .border-left,
+.card .border-right {
+  position: absolute;
+  width: 2px;
+  height: 0;
+  background: #00ffcc;
+  transition: height 0.5s ease;
+  z-index: -1;
+}
+
+.card .border-left {
+  left: 0;
+  top: 0;
+}
+
+.card .border-right {
+  right: 0;
+  bottom: 0;
+}
+
+.card:hover .border-left,
+.card:hover .border-right {
+  height: 100%;
+}
+
+.card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ffcc;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 22px;
+  color: #007a66;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 15px;
+  color: #333;
+  margin: 8px 0;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Meet Our Team</h1>
+
+  <div class="team-container">
+    <div class="card" data-tilt>
+      <span class="border-left"></span>
+      <span class="border-right"></span>
+      <img src="https://i.pravatar.cc/150?img=12" alt="Kiran" />
+      <h3>Kiran Relekar</h3>
+      <p><b>Bachelor of Engineering in Electronics</b></p>
+      <p>Over 5 years experience in hardware repair & computer assembly.</p>
+      <div class="social-icons">
+        <a href="#"><img src="https://img.icons8.com/color/48/000000/email.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/facebook-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/linkedin.png" /></a>
+      </div>
+    </div>
+    <div class="card" data-tilt>
+      <span class="border-left"></span>
+      <span class="border-right"></span>
+      <img src="https://i.pravatar.cc/150?img=32" alt="Tejas" />
+      <h3>Tejas Relekar</h3>
+      <p><b>Bachelor of Engineering in IT</b></p>
+      <p>10+ years in IoT, IT security, services, and hardware.</p>
+      <div class="social-icons">
+        <a href="#"><img src="https://img.icons8.com/color/48/000000/email.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/facebook-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/linkedin.png" /></a>
+      </div>
+    </div>
+    <div class="card" data-tilt>
+      <span class="border-left"></span>
+      <span class="border-right"></span>
+      <img src="https://i.pravatar.cc/150?img=22" alt="Sagar" />
+      <h3>Sagar Tukrul</h3>
+      <p><b>Bachelor of Engineering in EXTC</b></p>
+      <p>5+ years in embedded hardware and software development.</p>
+      <div class="social-icons">
+        <a href="#"><img src="https://img.icons8.com/color/48/000000/email.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/facebook-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/linkedin.png" /></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="second-row-wrapper">
+    <div class="card" data-tilt>
+      <span class="border-left"></span>
+      <span class="border-right"></span>
+      <img src="https://i.pravatar.cc/150?img=42" alt="Zubair" />
+      <h3>Zubair</h3>
+      <p><b>Engineer</b></p>
+      <p>2+ years in laptop/computer repair & troubleshooting.</p>
+      <div class="social-icons">
+        <a href="#"><img src="https://img.icons8.com/color/48/000000/email.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/facebook-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/linkedin.png" /></a>
+      </div>
+    </div>
+    <div class="card" data-tilt>
+      <span class="border-left"></span>
+      <span class="border-right"></span>
+      <img src="https://i.pravatar.cc/150?img=52" alt="Vaishnavi" />
+      <h3>Vaishnavi Ghade</h3>
+      <p><b>Asset Manager</b></p>
+      <p>Expert in optimizing asset performance throughout the lifecycle.</p>
+      <div class="social-icons">
+        <a href="#"><img src="https://img.icons8.com/color/48/000000/email.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/000000/facebook-new.png" /></a>
+        <a href="#"><img src="https://img.icons8.com/fluency/48/linkedin.png" /></a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

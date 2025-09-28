@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tejyash Cyber Solutions</title>
+    <link rel="shortcut icon" href="Favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/card.css" />
+    <style>
+      #scrollIndicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: 0%;
+        background-color: #09e485;
+        /* You can change the color */
+        z-index: 9999;
+      }
+
+      #notificationBox {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        display: none;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .success {
+        background-color: #d1fae5;
+        color: #065f46;
+        border: 1px solid #10b981;
+      }
+
+      .warning {
+        background-color: #fef3c7;
+        color: #92400e;
+        border: 1px solid #f59e0b;
+      }
+
+      .error {
+        background-color: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #ef4444;
+      }
+
+      .info {
+        background-color: #dbeafe;
+        color: #1e3a8a;
+        border: 1px solid #3b82f6;
+      }
+
+      #retryBtn {
+        margin-left: 12px;
+        font-size: 14px;
+        text-decoration: underline;
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .goog-te-gadget .goog-te-combo {
+        margin: 4px 0;
+      }
+
+      .goog-te-combo,
+      .VIpgJd-ZVi9od-ORHb *,
+      .VIpgJd-ZVi9od-SmfZ *,
+      .VIpgJd-ZVi9od-xl07Ob *,
+      .VIpgJd-ZVi9od-vH1Gmf *,
+      .VIpgJd-ZVi9od-l9xktf * {
+        font-family: arial;
+        font-size: 10pt;
+      }
+
+      .goog-te-combo {
+        margin-left: 4px;
+        margin-right: 4px;
+        vertical-align: baseline;
+      }
+
+      .goog-te-combo {
+        background: white;
+        border-radius: 4px;
+        padding: 4px;
+        border: 1px solid #ccc;
+      }
+
+      select {
+        width: 100%;
+        padding: 10px;
+        margin: 12px 0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+      }
+
+      *,
+      :after,
+      :before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- navigation bar -->
+    <header>
+      <nav>
+        <!-- Mobile Menu Toggle -->
+        <div class="menu-toggle">☰</div>
+
+        <!-- Brand/Logo -->
+        <img
+          src="Home/TYCS3.dffac8614160bdfff849.png"
+          alt="logo"
+          width="200"
+          style="padding: 10px"
+        />
+
+        <!-- Nav Links -->
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link">Book Service</a></li>
+          <!-- <li><a href="aboutus.html" class="nav-link">About Us</a></li> -->
+          <li><a href="teams.html" class="nav-link">Teams</a></li>
+          <li><a href="contactus.html" class="nav-link">Contact Us</a></li>
+          <div
+            class="translate-container"
+            id="google_translate_element"
+            style="float: right; padding: 8px; display: none"
+          ></div>
+          <div class="translate-container" style="width: 150px">
+            <select id="customLangSelect">
+              <option value="">🌐 Select Language</option>
+              <!-- All Google Translate languages -->
+              <option value="af">Afrikaans</option>
+              <option value="sq">Albanian</option>
+              <option value="am">Amharic</option>
+              <option value="ar">Arabic</option>
+              <option value="hy">Armenian</option>
+              <option value="az">Azerbaijani</option>
+              <option value="eu">Basque</option>
+              <option value="be">Belarusian</option>
+              <option value="bn">Bengali</option>
+              <option value="bs">Bosnian</option>
+              <option value="bg">Bulgarian</option>
+              <option value="ca">Catalan</option>
+              <option value="ceb">Cebuano</option>
+              <option value="ny">Chichewa</option>
+              <option value="zh-CN">Chinese (Simplified)</option>
+              <option value="zh-TW">Chinese (Traditional)</option>
+              <option value="co">Corsican</option>
+              <option value="hr">Croatian</option>
+              <option value="cs">Czech</option>
+              <option value="da">Danish</option>
+              <option value="nl">Dutch</option>
+              <option value="en">English</option>
+              <option value="eo">Esperanto</option>
+              <option value="et">Estonian</option>
+              <option value="tl">Filipino</option>
+              <option value="fi">Finnish</option>
+              <option value="fr">French</option>
+              <option value="fy">Frisian</option>
+              <option value="gl">Galician</option>
+              <option value="ka">Georgian</option>
+              <option value="de">German</option>
+              <option value="el">Greek</option>
+              <option value="gu">Gujarati</option>
+              <option value="ht">Haitian Creole</option>
+              <option value="ha">Hausa</option>
+              <option value="haw">Hawaiian</option>
+              <option value="iw">Hebrew</option>
+              <option value="hi">Hindi</option>
+              <option value="hmn">Hmong</option>
+              <option value="hu">Hungarian</option>
+              <option value="is">Icelandic</option>
+              <option value="ig">Igbo</option>
+              <option value="id">Indonesian</option>
+              <option value="ga">Irish</option>
+              <option value="it">Italian</option>
+              <option value="ja">Japanese</option>
+              <option value="jw">Javanese</option>
+              <option value="kn">Kannada</option>
+              <option value="kk">Kazakh</option>
+              <option value="km">Khmer</option>
+              <option value="ko">Korean</option>
+              <option value="ku">Kurdish (Kurmanji)</option>
+              <option value="ky">Kyrgyz</option>
+              <option value="lo">Lao</option>
+              <option value="la">Latin</option>
+              <option value="lv">Latvian</option>
+              <option value="lt">Lithuanian</option>
+              <option value="lb">Luxembourgish</option>
+              <option value="mk">Macedonian</option>
+              <option value="mg">Malagasy</option>
+              <option value="ms">Malay</option>
+              <option value="ml">Malayalam</option>
+              <option value="mt">Maltese</option>
+              <option value="mi">Maori</option>
+              <option value="mr">Marathi</option>
+              <option value="mn">Mongolian</option>
+              <option value="my">Myanmar (Burmese)</option>
+              <option value="ne">Nepali</option>
+              <option value="no">Norwegian</option>
+              <option value="ps">Pashto</option>
+              <option value="fa">Persian</option>
+              <option value="pl">Polish</option>
+              <option value="pt">Portuguese</option>
+              <option value="pa">Punjabi</option>
+              <option value="ro">Romanian</option>
+              <option value="ru">Russian</option>
+              <option value="sm">Samoan</option>
+              <option value="gd">Scots Gaelic</option>
+              <option value="sr">Serbian</option>
+              <option value="st">Sesotho</option>
+              <option value="sn">Shona</option>
+              <option value="sd">Sindhi</option>
+              <option value="si">Sinhala</option>
+              <option value="sk">Slovak</option>
+              <option value="sl">Slovenian</option>
+              <option value="so">Somali</option>
+              <option value="es">Spanish</option>
+              <option value="su">Sundanese</option>
+              <option value="sw">Swahili</option>
+              <option value="sv">Swedish</option>
+              <option value="tg">Tajik</option>
+              <option value="ta">Tamil</option>
+              <option value="te">Telugu</option>
+              <option value="th">Thai</option>
+              <option value="tr">Turkish</option>
+              <option value="uk">Ukrainian</option>
+              <option value="ur">Urdu</option>
+              <option value="uz">Uzbek</option>
+              <option value="vi">Vietnamese</option>
+              <option value="cy">Welsh</option>
+              <option value="xh">Xhosa</option>
+              <option value="yi">Yiddish</option>
+              <option value="yo">Yoruba</option>
+              <option value="zu">Zulu</option>
+            </select>
+          </div>
+          <!-- 🔄 Toggle Switches Section on Right -->
+          <div class="toggle-container">
+            <div class="mode-toggle">
+              <span class="left-label">Normal</span>
+              <label class="switch" aria-label="Toggle Color Blind Mode">
+                <input type="checkbox" id="colorBlindToggle" />
+                <span class="slider"></span>
+              </label>
+              <span class="right-label">Color-blind Mode</span>
+            </div>
+          </div>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div id="statement">
+        <h3>
+          Amazing
+          <span style="color: rgb(81, 155, 81)">Sevices & Features</span> For
+          You
+        </h3>
+      </div>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/ComputerSale.f13102ec1716c3138875aad2b48d5725.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Computer & Laptop Sales</h3>
+          <p>
+            We have a wide range of computers and laptops available at
+            discounted prices, with something to suit every budget and need.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/Reparing.5ece42a2463e027be2ca108d9713fb70.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Computer & Laptop Repairing</h3>
+          <p>
+            Our team of experienced technicians is here to help diagnose and
+            repair any issues you may be experiencing with your computer or
+            laptop.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/Refurbish.9fa85956518d2863ed097176ad00f473.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Refurbish Laptops</h3>
+          <p>
+            Refurbished laptops are a great way to get a high-quality device at
+            a more affordable price. Our refurbished laptops have been carefully
+            inspected, tested, and restored.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/website.75c6ef1ee40a2db265972a13071eb966.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Website Development</h3>
+          <p>
+            We offer a range of website development services, including website
+            design, development, and maintenance. Our process begins with a
+            consultation to understand your requirements and goals, so we can
+            create a customized plan that meets your needs.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/Support.ff37bda8f550b72fcf823f7f0fd2a672.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Remote Desk Support</h3>
+          <p>
+            Our remote desk support service allows our skilled technicians to
+            connect to your computer or laptop from our office, so we can
+            diagnose and fix issues.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/AntivirusHover.5ecd40bf0a96190087ea84c630763322.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Virus Removal</h3>
+          <p>
+            We understand the frustration and potential harm that viruses can
+            cause to your computer or laptop. Our team of experienced
+            technicians is here to help you quickly and effectively remove any
+            viruses from your device.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/NetworkingHover.5eb55fa4f479f221f99d409eb1b9b792.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Networking</h3>
+          <p>
+            Our networking service is designed to help you connect all of your
+            devices and systems, so you can work efficiently and effectively. We
+            offer a range of networking services, including installation,
+            configuration, and maintenance.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/cctvHover.88d4443b7d38c7613afb26da8cfe07c0.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>CCTV Installation & Service</h3>
+          <p>
+            CCTV installation service is designed to help you secure your
+            property and assets, by installing high-quality, reliable CCTV
+            cameras and systems.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/DataBackupHover.def473941f8f3177c87620f371316c7f.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Data Backup & Recovery</h3>
+          <p>
+            Our data backup and recovery service is designed to help you protect
+            your valuable data, and recover it in the event of data loss or
+            corruption.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/DigitalMarketingHover.5c41bbdd625f87e982702d1ec18cbe0c.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>Digital marketing</h3>
+          <p>
+            We offer a range of digital marketing services, including search
+            engine optimization (SEO), social media marketing and content
+            marketing. Our team of experienced marketers will work with you to
+            create a customized marketing plan that meets your business goals
+            and budget.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <img
+              src="SVG/consultingHover.0b7fc50ccd5621c108b7ae8bec54630e.svg"
+              alt=""
+              width="80px"
+            />
+          </div>
+          <h3>IT Consultation</h3>
+          <p>
+            Our team of experienced IT consultants will work with you to assess
+            your current technology infrastructure and processes, identify areas
+            for improvement, and provide customized solutions that meet your
+            specific needs and goals.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- copy right reserved -->
+    <footer class="footer">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+      <div class="footer-content">
+        <p id="para">
+          &copy; 2023 Tejyash Cyber Solutions. All rights reserved.
+        </p>
+        <p id="para">
+          Follow us on
+          <a
+            href="https://www.instagram.com/tejyashcybersolutions?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank"
+            >Instagram</a
+          >
+          |
+          <a
+            href="https://www.facebook.com/people/Tejas-Relekar/pfbid02RamGAmVHfk5TH9RYoqP36F6hsvcA8jvJT9LqxFrqm5ufyvASPQxVcHVV3nGip9anl/"
+            target="_blank"
+            >Facebook</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      function toggleMenu(x) {
+        x.classList.toggle("change");
+        document.getElementById("nav-list").classList.toggle("show");
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("accessibility-popup");
+        const closeBtn = document.getElementById("close-popup");
+
+        if (!popup || !closeBtn) return;
+
+        // Show after 2 seconds
+        setTimeout(() => {
+          popup.classList.add("show");
+        }, 2000);
+
+        // Close button
+        closeBtn.addEventListener("click", () => {
+          popup.classList.remove("show");
+        });
+
+        // Toggle with Alt + A
+        document.addEventListener("keydown", (e) => {
+          if (e.altKey && e.key.toLowerCase() === "a") {
+            popup.classList.toggle("show");
+          }
+        });
+      });
+
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+
+      function changeLanguage(lang) {
+        const select = document.querySelector(".goog-te-combo");
+        if (select) {
+          select.value = lang;
+          select.dispatchEvent(new Event("change"));
+        }
+      }
+
+      document
+        .getElementById("customLangSelect")
+        .addEventListener("change", function () {
+          const selectedLang = this.value;
+          if (selectedLang) changeLanguage(selectedLang);
+        });
+    </script>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            autoDisplay: false,
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          "google_translate_element"
+        );
+
+        // Restore previous language selection if exists
+        const savedLang = localStorage.getItem("selectedLanguage");
+        if (savedLang) {
+          setTimeout(() => {
+            changeLanguage(savedLang);
+          }, 500);
+        }
+      }
+
+      function changeLanguage(lang) {
+        const select = document.querySelector(".goog-te-combo");
+        if (select) {
+          select.value = lang;
+          select.dispatchEvent(new Event("change"));
+          // Save the selection
+          localStorage.setItem("selectedLanguage", lang);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Initialize custom select if it exists
+        const customSelect = document.getElementById("customLangSelect");
+        if (customSelect) {
+          customSelect.addEventListener("change", function () {
+            const selectedLang = this.value;
+            if (selectedLang) changeLanguage(selectedLang);
+          });
+
+          // Set the custom select to match current language
+          const savedLang = localStorage.getItem("selectedLanguage");
+          if (savedLang) {
+            customSelect.value = savedLang;
+          }
+        }
+      });
+    </script>
+
+    <script src="JS/colorblind.js"></script>
+
+    <script>
+      document.querySelector(".menu-toggle").addEventListener("click", () => {
+        document.querySelector(".nav-list").classList.toggle("active");
+      });
+    </script>
+
+    <script src="JS/voicecontrol.js"></script>
+
+    <script>
+      const toggle = document.getElementById("themeToggle");
+      const icon = toggle.querySelector(".icon");
+      const body = document.body;
+
+      let darkMode = localStorage.getItem("darkMode") === "true";
+
+      function applyTheme(isDark) {
+        if (isDark) {
+          body.classList.add("dark-mode");
+          icon.style.left = "34px";
+          icon.style.backgroundImage =
+            "url('https://img.icons8.com/ios-filled/50/sun--v1.png')";
+          toggle.style.background = "#2c3e50";
+        } else {
+          body.classList.remove("dark-mode");
+          icon.style.left = "4px";
+          icon.style.backgroundImage =
+            "url('https://img.icons8.com/ios-filled/50/moon-symbol.png')";
+          toggle.style.background = "#f1c40f";
+        }
+        localStorage.setItem("darkMode", isDark);
+      }
+
+      applyTheme(darkMode);
+
+      toggle.addEventListener("click", () => {
+        darkMode = !darkMode;
+        applyTheme(darkMode);
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let voiceEnabled = localStorage.getItem("voiceEnabled") !== "false";
+
+        // Toggle with Alt + S
+        document.addEventListener("keydown", (e) => {
+          if (e.altKey && e.key.toLowerCase() === "s") {
+            voiceEnabled = !voiceEnabled;
+            localStorage.setItem("voiceEnabled", voiceEnabled);
+            speechSynthesis.cancel();
+
+            // Optional: Voice feedback
+            if (voiceEnabled) {
+              const utterance = new SpeechSynthesisUtterance(
+                "Voice assist enabled"
+              );
+              speechSynthesis.speak(utterance);
+            } else {
+              const utterance = new SpeechSynthesisUtterance(
+                "Voice assist disabled"
+              );
+              speechSynthesis.speak(utterance);
+            }
+          }
+        });
+
+        const speak = (text) => {
+          if (!voiceEnabled || !text.trim()) return;
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.rate = 1;
+          utterance.pitch = 1;
+          speechSynthesis.cancel();
+          speechSynthesis.speak(utterance);
+        };
+
+        const allDivs = document.querySelectorAll("div");
+        allDivs.forEach((div) => {
+          div.addEventListener("mouseenter", () => speak(div.textContent));
+          div.addEventListener("touchstart", () => speak(div.textContent), {
+            passive: true,
+          });
+        });
+      });
+    </script>
+    <script>
+      document.querySelectorAll(".card").forEach((card) => {
+        card.addEventListener("click", () => {
+          const serviceName = card.querySelector("h3").textContent.trim();
+          localStorage.setItem("selectedService", serviceName);
+          window.location.href = "booking.html";
+        });
+      });
+    </script>
+
+    <!--------------------------------------------------->
+
+    <script src="js/colorblind.js" defer></script>
+
+    <!--------------------------------------------------->
+  </body>
+</html>

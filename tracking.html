@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Tracking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .tracking-id {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .step {
+      padding: 10px 15px;
+      border-left: 4px solid #ccc;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background-color: #f1f1f1;
+      position: relative;
+    }
+    .step.completed {
+      border-color: #28a745;
+      background-color: #e6f9ea;
+    }
+    .step::before {
+      content: "✔";
+      position: absolute;
+      left: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ccc;
+    }
+    .step.completed::before {
+      color: #28a745;
+    }
+    .copy-link-box {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #eef2f7;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .copy-link-box input {
+      width: 80%;
+      padding: 10px;
+      font-size: 14px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .copy-link-box button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+    }
+    .copy-link-box button i {
+      margin-left: 5px;
+    }
+    .copy-message {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Track Your Service</div>
+    <div class="tracking-id" id="trackingId">Tracking ID: </div>
+
+    <div class="step completed">Booking Confirmed</div>
+    <div class="step completed">Pickup Scheduled</div>
+    <div class="step">Service in Progress</div>
+    <div class="step">Delivery/Completion Pending</div>
+
+    <div class="copy-link-box">
+      <input type="text" id="trackingLink" readonly />
+      <button onclick="copyTrackingLink()">
+        Copy Link <i>📋</i>
+      </button>
+      <div class="copy-message">
+        Copy this link and track the progress of your service.<br />
+        You can also save it for later use.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function getTrackingIdFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id') || 'unknown';
+    }
+
+    function generateTrackingLink(trackingId) {
+      return `${window.location.origin}${window.location.pathname}?id=${trackingId}`;
+    }
+
+    function copyTrackingLink() {
+      const input = document.getElementById("trackingLink");
+      input.select();
+      input.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      alert("Tracking link copied!");
+    }
+
+    // Init on load
+    const trackingId = getTrackingIdFromURL();
+    document.getElementById("trackingId").textContent = `Tracking ID: ${trackingId}`;
+    document.getElementById("trackingLink").value = generateTrackingLink(trackingId);
+  </script>
+</body>
+</html>

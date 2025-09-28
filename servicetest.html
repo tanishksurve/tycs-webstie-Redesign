@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Service Booking with Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 30px;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    /* Report Popup */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .popup-content {
+      background: linear-gradient(135deg, #ffffff, #e0f7fa, #d0f8ce);
+      padding: 30px;
+      text-align: center;
+      border-radius: 10px;
+      position: relative;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .popup h2 {
+      margin-bottom: 10px;
+    }
+
+    .popup p {
+      margin-bottom: 15px;
+    }
+
+    .link-container {
+      word-wrap: break-word;
+      background: linear-gradient(90deg, #e0f7fa 0%, #d0f8ce 100%);
+      color: #00796b;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      font-weight: bold;
+      font-size: 1.08em;
+    }
+
+    .copy-button {
+      background-color: #28a745;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 26px;
+      color: #007bff;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 8px 16px;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="bookingForm">
+    <h2>Book a Service</h2>
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="service">Select Service:</label>
+    <select id="service" required>
+      <option value="">--Select--</option>
+      <option value="Refurbish Laptops">Refurbish Laptops</option>
+      <option value="AC Repair">AC Repair</option>
+      <option value="Plumbing">Plumbing</option>
+    </select>
+
+    <button type="submit">Submit Booking</button>
+  </form>
+
+  <!-- Report Popup -->
+  <div class="popup" id="reportPopup">
+    <div class="popup-content" style="position: relative;">
+      <button class="close-btn" onclick="closePopup()">×</button>
+      <h2>Booking Confirmed!</h2>
+      <p id="reportText">Generating Report...</p>
+      <div class="link-container" id="linkContainer"></div>
+      <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const popup = document.getElementById('reportPopup');
+    const reportText = document.getElementById('reportText');
+    const linkContainer = document.getElementById('linkContainer');
+
+    let trackingUrl = "";
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const service = document.getElementById('service').value;
+
+      const bookingId = "BK" + Math.floor(100000 + Math.random() * 900000);
+      trackingUrl = `https://yourdomain.com/track?id=${bookingId}`;
+
+      reportText.innerHTML = `
+        Hi <strong>${name}</strong>,<br>
+        Your <strong>${service}</strong> service has been booked.<br>
+        Booking ID: <strong>${bookingId}</strong>
+      `;
+
+      linkContainer.innerText = trackingUrl;
+
+      popup.style.display = 'flex';
+    });
+
+    function copyToClipboard() {
+      const el = document.createElement('textarea');
+      el.value = trackingUrl;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert("Tracking link copied!");
+    }
+
+    function closePopup() {
+      popup.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
